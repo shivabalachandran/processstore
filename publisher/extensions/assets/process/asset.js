@@ -10,7 +10,7 @@ asset.manager = function(ctx) {
 
             log.info("Entered");
             var ref = require('utils').time;
-            var GovernanceConstants=Packages.org.wso2.carbon.governance.api.util;
+            var GovernanceConstants = Packages.org.wso2.carbon.governance.api.util;
             //Check if the options object has a createdtime attribute and populate it 
             if ((options.attributes) && (options.attributes.hasOwnProperty('overview_createdtime'))) {
                 options.attributes.overview_createdtime = ref.getCurrentTime();
@@ -20,8 +20,8 @@ asset.manager = function(ctx) {
             // log.info(options);
             var asset = this.get(options.id);
             log.info(asset);
-            for(var key in this.registry){
-                log.info('key: '+key);
+            for (var key in this.registry) {
+                log.info('key: ' + key);
             }
             //TODO
 

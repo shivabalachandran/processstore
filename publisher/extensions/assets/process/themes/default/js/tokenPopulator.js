@@ -1,26 +1,131 @@
- $(document).ready(function() {
-    $.ajax({
-        url:"https://localhost:9443/publisher/apis/assets?type=process&&fields=id,overview_name",
-        type:'GET',
-        success:function(response){
-        	alert(response.data);
-            
-// var assets = JSON.stringfy(response.data);
-           
-               $("#properties_predecessors").tokenInput(response.data);
+   $(document).ready(function() {
 
-        },
-        error:function(){
-            console.log('unable to fetch tag cloud for '+type);
-        }
+    
+
+    var url = "https://localhost:9443/publisher/apis/processes?type=process";
+
+
+    //Predecessors Loading
+    $("#properties_predecessors").tokenInput(url,{
+      preventDuplicates: true,
+
+     onResult:function(results){
+      var assets = {data:[]}
+      $.each(results, function(){
+
+
+
+        for(var i in results){ var item = results[i];
+
+          assets.data.push({
+
+            "path":item.path,
+            "id" :item.id,
+            "name" : item.attributes.overview_name});
+
+        };
     });
+    return assets.data;
 
 
+
+    console.log(''+JSON.stringify(arguments));
+  },
+  tokenFormatter: function(item) { return "<li><a href = https://localhost:9443/publisher/asts/process/details/" + item.id +">" + item.name + " </a></li>" }
+});
+
+
+
+//Sucessors Loading
+$("#properties_successors").tokenInput(url,{
+      preventDuplicates: true,
+
+     onResult:function(results){
+      var assets = {data:[]}
+      $.each(results, function(){
+
+
+
+        for(var i in results){ var item = results[i];
+
+          assets.data.push({
+
+            "path":item.path,
+            "id" :item.id,
+            "name" : item.attributes.overview_name});
+
+        };
     });
+    return assets.data;
 
- 	// var url = "localhost:9443/publisher/apis/assets?type=process";
-  //           $("#properties_predecessors").tokenInput(url,{
-  //           	onResult:function(){	
-  //           		console.log(''+JSON.stringfy(arguments));
-  //           	}
-  //           });
+
+
+    console.log(''+JSON.stringify(arguments));
+  },
+  tokenFormatter: function(item) { return "<li><a href = https://localhost:9443/publisher/asts/process/details/" + item.id +">" + item.name + " </a></li>" }
+});
+
+
+//Generaliztion Loading
+
+$("#properties_generalizations").tokenInput(url,{
+      preventDuplicates: true,
+
+     onResult:function(results){
+      var assets = {data:[]}
+      $.each(results, function(){
+
+
+
+        for(var i in results){ var item = results[i];
+
+          assets.data.push({
+
+            "path":item.path,
+            "id" :item.id,
+            "name" : item.attributes.overview_name});
+
+        };
+    });
+    return assets.data;
+
+
+
+    console.log(''+JSON.stringify(arguments));
+  },
+  tokenFormatter: function(item) { return "<li><a href = https://localhost:9443/publisher/asts/process/details/" + item.id +">" + item.name + " </a></li>" }
+});
+
+//specialization loading
+
+$("#properties_specializations").tokenInput(url,{
+      preventDuplicates: true,
+
+     onResult:function(results){
+      var assets = {data:[]}
+      $.each(results, function(){
+
+
+
+        for(var i in results){ var item = results[i];
+
+          assets.data.push({
+
+            "path":item.path,
+            "id" :item.id,
+            "name" : item.attributes.overview_name});
+        };
+    });
+    return assets.data;
+
+
+
+    console.log(''+JSON.stringify(arguments));
+  },
+  tokenFormatter: function(item) { return "<li><a href = https://localhost:9443/publisher/asts/process/details/" + item.id +">" + item.name + " </a></li>" }
+});
+
+
+
+
+  });

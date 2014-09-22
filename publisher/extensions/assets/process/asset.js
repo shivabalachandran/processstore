@@ -31,7 +31,7 @@ asset.manager = function(ctx) {
             for (var i = 0; i < tempArray1.length; i++) {
 
                 var preAsset = this.get(tempArray1[i]);
-                this.registry.associate(asset.path, preAsset.path, GovernanceConstants.USED_BY);
+                this.registry.associate(asset.path, preAsset.path, "Predecessors");
                 log.info("associations Predecessors");
 
             }
@@ -42,8 +42,8 @@ asset.manager = function(ctx) {
             for (var i = 0; i < tempArray2.length; i++) {
 
                 var specAsset = this.get(tempArray2[i]);
-                this.registry.associate(asset.path, specAsset.path, GovernanceConstants.DEPENDS);
-                log.info("associations Successors");
+                this.registry.associate(asset.path, specAsset.path, "Specializations");
+                log.info("associations Specializations");
 
             }
 
@@ -54,7 +54,7 @@ asset.manager = function(ctx) {
             for (var i = 0; i < tempArray3.length; i++) {
 
                 var genAsset = this.get(tempArray3[i]);
-                this.registry.associate(asset.path, genAsset.path, GovernanceConstants.DEPENDS);
+                this.registry.associate(asset.path, genAsset.path, "Generalizations");
                 log.info("associations Generalizations");
 
             }
@@ -65,7 +65,7 @@ asset.manager = function(ctx) {
             for (var i = 0; i < tempArray4.length; i++) {
 
                 var sucAsset = this.get(tempArray4[i]);
-                this.registry.associate(asset.path, sucAsset.path, GovernanceConstants.DEPENDS);
+                this.registry.associate(asset.path, sucAsset.path, "Successors");
                 log.info("associations Successors");
 
             }
